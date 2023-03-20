@@ -96,7 +96,6 @@ public class OtpServiceTest {
         
     }
 
-    // Not completed, still error
     @Test
     void validateOtp_MoreThan2Minutes_returnError() {
 
@@ -106,7 +105,7 @@ public class OtpServiceTest {
         assertNotNull(otpGenerateOpt.get());
         // Set create time to 2 minutes ago
         Otp otp = otpGenerateOpt.get();
-        otp.setCreateTime(otp.getCreateTime() - 121000L);
+        otp.setExpiryTime(otp.getExpiryTime() - 240000L);
         this.otpRepository.saveAndFlush(otp);
 
         OtpValidateDto otpValidateDto = new OtpValidateDto();
